@@ -5,7 +5,7 @@ set -e
 # Environment Variables
 AWS_REGION="us-east-1"
 S3_BUCKET_NAME="chekit-terraform-state-bucket-2026"
-DYNAMODB_TABLE_NAME="terraform-state-lock" 
+#DYNAMODB_TABLE_NAME="terraform-state-lock" 
 STATE_KEY="terraform/terraform.tfstate" 
 
 echo "--- Creating AWS Resources for Terraform Backend ---"
@@ -26,13 +26,13 @@ echo "S3 bucket created and versioning enabled."
 echo ""
 
 # 2. Create DynamoDB Table for State Locking
-echo "Creating DynamoDB table: $DYNAMODB_TABLE_NAME..."
-aws dynamodb create-table \
-    --table-name "$DYNAMODB_TABLE_NAME" \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-    --region "$AWS_REGION"
+# echo "Creating DynamoDB table: $DYNAMODB_TABLE_NAME..."
+# aws dynamodb create-table \
+#     --table-name "$DYNAMODB_TABLE_NAME" \
+#     --attribute-definitions AttributeName=LockID,AttributeType=S \
+#     --key-schema AttributeName=LockID,KeyType=HASH \
+#     --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+#     --region "$AWS_REGION"
 
-echo "DynamoDB table created for state locking."
-echo ""
+# echo "DynamoDB table created for state locking."
+# echo ""

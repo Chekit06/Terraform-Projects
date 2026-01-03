@@ -5,7 +5,7 @@ set -e
 # Environment Variables
 AWS_REGION="us-east-1"
 S3_BUCKET_NAME="chekit-terraform-state-bucket-2026"
-DYNAMODB_TABLE_NAME="terraform-state-lock"
+#DYNAMODB_TABLE_NAME="terraform-state-lock"
 
 echo "--- Deleting AWS Resources for Terraform Backend ---"
 echo ""
@@ -39,11 +39,11 @@ echo "Deleting S3 bucket..."
 aws s3 rb s3://"$S3_BUCKET_NAME" --region "$AWS_REGION" --force
 echo "S3 bucket deleted."
 
-# Delete the DynamoDB Table
-echo "Deleting DynamoDB table..."
-aws dynamodb delete-table \
-    --table-name "$DYNAMODB_TABLE_NAME" \
-    --region "$AWS_REGION"
-echo "DynamoDB table deleted."
+# # Delete the DynamoDB Table
+# echo "Deleting DynamoDB table..."
+# aws dynamodb delete-table \
+#     --table-name "$DYNAMODB_TABLE_NAME" \
+#     --region "$AWS_REGION"
+# echo "DynamoDB table deleted."
 
-echo "✅ Terraform backend resources deleted successfully."
+# echo "✅ Terraform backend resources deleted successfully."
